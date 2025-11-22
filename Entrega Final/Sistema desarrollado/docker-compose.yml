@@ -1,0 +1,22 @@
+# MoneyFlow_deploy/docker-compose.yml
+services:
+  backend:
+    build:
+      context: ../MoneyFlow_Backend
+      dockerfile: Dockerfile
+    ports:
+      - '3000:3000'
+    env_file:
+      - .env
+    depends_on: []
+
+  frontend:
+    build:
+      context: ../MoneyFlow_Frontend
+      dockerfile: Dockerfile
+    ports:
+      - '3001:3000'
+    env_file:
+      - ../MoneyFlow_Frontend/.env
+    depends_on:
+      - backend
